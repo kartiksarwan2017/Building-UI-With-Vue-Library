@@ -1,10 +1,10 @@
 <script setup>
+  import Nav from "./components/Nav.vue";
 </script>
 
 <template>
   <main>
-    <button>Button</button>
-    <a-button type="primary">Primary Button</a-button>
+    <Nav />
   </main>
 </template>
 
