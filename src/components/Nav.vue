@@ -1,13 +1,14 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import Container from "./Container.vue";
+import AuthModal from "./AuthModal.vue";
+import 'ant-design-vue/dist/reset.css';
 import { ref } from "vue";
 
 const searchUsername = ref("");
 
-const onSearch = () => {
-
-}
+const onSearch = () => {}
+const isAuthenticated = ref(false);
 
 </script>
 
@@ -21,9 +22,13 @@ const onSearch = () => {
                         <AInputSearch v-model="searchUsername" placeholder="Username..." style="width: 200px"
                             @search="onSearch" />
                     </div>
-                    <div class="left-content">
-                        <AButton type="primary">Sign Up</AButton>
-                        <AButton type="primary">Login</AButton>
+                    <div class="left-content" v-if="!isAuthenticated">
+                        <AuthModal :isLogin="false" />
+                        <AuthModal :isLogin="true" />
+                    </div>
+                    <div class="left-content" v-else>
+                        <a-button type="primary">Profile</a-button>
+                        <a-button type="primary">Logout</a-button>
                     </div>
                 </div>
             </Container>
@@ -47,7 +52,13 @@ const onSearch = () => {
     margin-right: 10px;
 }
 
+.left-content {
+    display: flex;
+    align-items: center;
+}
+
 .left-content button {
     margin-left: 10px;
 }
+
 </style>
